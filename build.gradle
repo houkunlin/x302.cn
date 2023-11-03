@@ -1,0 +1,57 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.9.20'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.20'
+    id 'io.ktor.plugin' version '2.3.5'
+}
+
+group "cn.x302"
+version "0.0.1"
+mainClassName = "io.ktor.server.netty.EngineMain"
+
+def isDevelopment = project.ext.has("development")
+applicationDefaultJvmArgs = ["-Dio.ktor.development=$isDevelopment"]
+
+repositories {
+    mavenCentral()
+    maven { url "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers" }
+}
+
+dependencies {
+    implementation "io.ktor:ktor-server-core-jvm"
+    implementation "io.ktor:ktor-server-auth-jvm"
+    implementation "io.ktor:ktor-server-caching-headers-jvm"
+    implementation "io.ktor:ktor-server-compression-jvm"
+    implementation "io.ktor:ktor-server-cors-jvm"
+    implementation "io.ktor:ktor-server-default-headers-jvm"
+    implementation "io.ktor:ktor-server-forwarded-header-jvm"
+    implementation "io.ktor:ktor-server-hsts-jvm"
+    implementation "io.ktor:ktor-server-call-logging-jvm"
+    implementation "io.ktor:ktor-server-call-id-jvm"
+    implementation "io.ktor:ktor-server-metrics-micrometer-jvm"
+    implementation "io.micrometer:micrometer-registry-prometheus:$prometeus_version"
+//    implementation "io.ktor:ktor-server-metrics-jvm"
+    implementation "io.ktor:ktor-server-content-negotiation-jvm"
+    implementation "io.ktor:ktor-serialization-jackson-jvm"
+    implementation "io.ktor:ktor-server-html-builder-jvm"
+    implementation "io.ktor:ktor-server-status-pages"
+    implementation "org.jetbrains:kotlin-css-jvm:1.0.0-pre.129-kotlin-1.4.20"
+    implementation "io.ktor:ktor-server-freemarker-jvm"
+//    implementation "io.ktor:ktor-serialization-kotlinx-json-jvm"
+    implementation "org.jetbrains.exposed:exposed-core:$exposed_version"
+    implementation "org.jetbrains.exposed:exposed-jdbc:$exposed_version"
+    implementation "org.jetbrains.exposed:exposed-java-time:$exposed_version"
+    implementation "org.jetbrains.exposed:exposed-kotlin-datetime:$exposed_version"
+    implementation "org.xerial:sqlite-jdbc:$sqlite_version"
+    implementation "com.h2database:h2:$h2_version"
+    implementation "org.postgresql:postgresql:$postgres_version"
+    implementation "io.ktor:ktor-server-netty-jvm"
+    implementation "ch.qos.logback:logback-classic:$logback_version"
+    implementation "io.ktor:ktor-server-config-yaml"
+    testImplementation "io.ktor:ktor-server-tests-jvm"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+
+    implementation 'no.api.freemarker:freemarker-java8:2.1.0'
+    implementation 'com.littlenb:snowflake:1.0.5'
+    implementation 'commons-codec:commons-codec:1.15'
+    implementation 'com.google.guava:guava:32.1.3-jre'
+}
